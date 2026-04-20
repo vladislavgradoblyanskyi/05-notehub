@@ -10,8 +10,10 @@ const validationSchema = Yup.object({
   content: Yup.string().max(500),
   tag: Yup.string().oneOf(["Todo", "Work", "Personal", "Meeting", "Shopping"]).required(),
 });
-
-export default function NoteForm({ onClose }: { onClose: () => void }) {
+type NoteFormProps = {
+  onClose: () => void;
+};
+export default function NoteForm({ onClose }:NoteFormProps) {
 
   const queryClient = useQueryClient();
 
@@ -49,6 +51,7 @@ export default function NoteForm({ onClose }: { onClose: () => void }) {
             <div className={css.formGroup}>
               <label htmlFor="content">Content</label>
               <textarea id="content" name="content" className={css.textarea} value={formik.values.content} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+              {formik.touched.content && formik.errors.content && (<span className={css.error}>{formik.errors.content}</span>)}
             </div>
             
             <div className={css.formGroup}>
@@ -60,6 +63,7 @@ export default function NoteForm({ onClose }: { onClose: () => void }) {
                 <option value="Meeting">Meeting</option>
                 <option value="Shopping">Shopping</option>
               </select>
+              {formik.touched.tag && formik.errors.tag && (<span className={css.error}>{formik.errors.tag}</span>)}
             </div>
             
             <div className={css.actions}>
