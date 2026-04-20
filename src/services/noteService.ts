@@ -1,5 +1,6 @@
 import axios from "axios";
 import type {Note} from '../types/note.ts'
+import type {NoteFormValues} from '../types/note.ts'
 const BASE_URL = "https://notehub-public.goit.study/api";
 
 const token = import.meta.env.VITE_NOTEHUB_TOKEN;
@@ -27,10 +28,11 @@ export async function fetchNotes(page: number, search: string) {
   return response.data;
 }
 
-export async function createNote(note: Omit<Note, "id">) {
-  const response = await instance.post<Note>("/notes", note);
-  return response.data;
-}
+export const createNote = async (note: NoteFormValues) => {
+  const res = await axios.post("/notes", note);
+  return res.data;
+};
+
 
 export async function deleteNote(id: string) {
   const response = await instance.delete<Note>(`/notes/${id}`);
