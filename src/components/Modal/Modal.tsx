@@ -11,17 +11,22 @@ interface ModalProps {
 export default function Modal({ children, onClose }: ModalProps){
 
     useEffect(() => {
-       function handleEsc(evt: KeyboardEvent) {
-         if (evt.key === "Escape") {
-           onClose();
-         }
-       }
+  function handleEsc(evt: KeyboardEvent) {
+    if (evt.key === "Escape") {
+      onClose();
+    }
+  }
 
-       window.addEventListener("keydown", handleEsc);
-       return () => {window.removeEventListener("keydown", handleEsc)};
-     },
-     [onClose]
-    );
+  window.addEventListener("keydown", handleEsc);
+
+  const originalOverflow = document.body.style.overflow;
+  document.body.style.overflow = "hidden";
+
+  return () => {
+    window.removeEventListener("keydown", handleEsc);
+    document.body.style.overflow = originalOverflow;
+  };
+    }, [onClose]);
 
     return createPortal(
       <div className={css.backdrop} onClick={onClose} role="dialog" aria-modal="true">
