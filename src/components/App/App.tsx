@@ -1,11 +1,13 @@
 import css from './App.module.css';
 import NoteList from '../NoteList/NoteList';
 import SearchBox from '../SearchBox/SearchBox';
-import Pagination from "../Pagination/Pagination";
+import Pagination from "../Pagination/Pagination.tsx";
 import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNotes } from "../../services/noteService";
+
+
 
 export default function App() {
   const [search, setSearch] = useState("");
@@ -34,12 +36,12 @@ export default function App() {
         <NoteList notes={data.notes} />
       )}
 
-      {data && data.totalPages > 1 && (
+      {data && data.totalPages > 1 && 
         <Pagination
           pageCount={data.totalPages}
           onPageChange={(newPage) => setPage(newPage)}
         />
-      )}
+      }
     </div>
   );
 }

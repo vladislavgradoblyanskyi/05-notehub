@@ -45,4 +45,12 @@
     color: #fff !important;
     font-weight: 500;
   }
-  
+  ul{
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  }
+  ul li{
+  cursor: pointer;
+  }

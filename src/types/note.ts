@@ -11,3 +11,7 @@ export interface NoteFormValues {
   content: string;
   tag: NoteTag;
 }
+export interface PaginationProps {
+  pageCount: number;
+  onPageChange: (page: number) => void;
+}
