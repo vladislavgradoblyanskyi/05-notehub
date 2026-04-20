@@ -5,13 +5,11 @@ export interface Note {
   title: string;
   content: string;
   tag: NoteTag;
+  createdAt: string;
+  updatedAt: string;
 }
 export interface NoteFormValues {
   title: string;
   content: string;
   tag: NoteTag;
-}
-export interface PaginationProps {
-  pageCount: number;
-  onPageChange: (page: number) => void;
 }
