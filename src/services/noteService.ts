@@ -28,8 +28,8 @@ export async function fetchNotes(page: number, search: string) {
   return response.data;
 }
 
-export const createNote = async (note: NoteFormValues) => {
-  const res = await axios.post("/notes", note);
+export const createNote = async (note: NoteFormValues): Promise<Note> => {
+  const res = await instance.post<Note>("/notes", note);
   return res.data;
 };
 
