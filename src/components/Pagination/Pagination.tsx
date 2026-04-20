@@ -10,7 +10,7 @@ export default function Pagination({ pageCount, onPageChange }: PaginationProps)
     
     <Paginate
       pageCount={pageCount}
-      onPageChange={(evt) => onPageChange(evt.selected + 1)}
+      onPageChange={(evt: { selected: number }) => onPageChange(evt.selected + 1)}
       previousLabel="<"
       nextLabel=">"
       breakLabel="..."
